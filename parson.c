@@ -2005,11 +2005,13 @@ JSON_Value * json_value_query_value(JSON_Value *value, const char *query) {
                 break;
             case JSONArray:
                 if (!is_digit) {
+                    parson_free(name);
                     return NULL;
                 }
                 return_value = json_array_get_value(json_value_get_array(value), atol(name));
                 break;
             default:
+                parson_free(name);
                 return NULL;
         }
     } else {
